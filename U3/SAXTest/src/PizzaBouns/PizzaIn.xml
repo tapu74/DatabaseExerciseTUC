@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dbw:Pizzen xsi:schemaLocation="http://www.tu-chemnitz.de/informatik/DVS/DBW pizzenSchema.xsd" xmlns:dbw="http://www.tu-chemnitz.de/informatik/DVS/DBW" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Pizza Name="Pizza Salami Supreme, Classic">
+            <ingredient>Zwiebeln</ingredient>
+            <ingredient>Salami</ingredient>
+            <ingredient>Käse</ingredient>
+            <ingredient>Thunfisch</ingredient>
+        </Pizza>
+        
+        
+        <Pizza Name="Pizza Lucca, Classic">
+            <ingredient>Salami</ingredient>
+            <ingredient>Green Chilie</ingredient>
+            <ingredient>paper</ingredient>
+            <ingredient>Thunfisch</ingredient>
+        </Pizza>
+        
+</dbw:Pizzen>
