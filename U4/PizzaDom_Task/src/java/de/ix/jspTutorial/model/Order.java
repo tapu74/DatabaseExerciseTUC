@@ -21,6 +21,7 @@ import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -375,7 +376,70 @@ public class Order {
 			ordersStream.close();
 			// Access root element
                         // @TODO get ordersNode
-	
+                           // root elements
+                            Document doc = builder.newDocument();
+                            Element rootElement = doc.createElement("Orders");
+                            doc.appendChild(rootElement);
+
+		
+			
+			// Here we create a new order node into the dom
+			// @TODO Create Element for single "order"
+                            
+                            Element order = doc.createElement("Order");
+                            rootElement.appendChild(order);
+                            
+			// @TODO add Attributes to order (which are stored in that class)
+                            // set attribute to staff element
+                            Attr attr = doc.createAttribute("PizzaId");
+                            attr.setValue(getPizzaId());
+                            order.setAttributeNode(attr);
+                            
+                            String[] items = getIngredientsId().split(",");
+                            int itemCount = items.length;
+                            for(int i=0;i<itemCount;i++)
+                            {
+                            Element ingredients = doc.createElement("Ingredients");
+                            ingredients.appendChild(doc.createTextNode(items[i]));
+                            order.appendChild(ingredients);
+                            }
+                            
+                            // firstname elements
+                            Element firstname = doc.createElement("Firstname");
+                            firstname.appendChild(doc.createTextNode(getFirstname()));
+                            order.appendChild(firstname);
+                            
+                            // Lastname elements
+                            Element lastname = doc.createElement("Lastname");
+                            lastname.appendChild(doc.createTextNode(getLastname()));
+                            order.appendChild(lastname);
+                            
+                            // Address elements
+                            Element address1 = doc.createElement("Address1");
+                            address1.appendChild(doc.createTextNode(getAddress1()));
+                            order.appendChild(address1);
+                            
+                            // Address2 elements
+                            Element address2 = doc.createElement("Address2");
+                            address2.appendChild(doc.createTextNode(getAddress2()));
+                            order.appendChild(address2);
+                            
+                            
+                            // PLZ elements
+                            Element plz = doc.createElement("PLZ");
+                            plz.appendChild(doc.createTextNode(getZip()));
+                            order.appendChild(plz);
+                            
+                            // City elements
+                            Element city = doc.createElement("Town");
+                            city.appendChild(doc.createTextNode(getTown()));
+                            order.appendChild(city);
+                            
+                            // Email elements
+                            Element email = doc.createElement("Email");
+                            email.appendChild(doc.createTextNode(getMail()));
+                            order.appendChild(email);
+                         
 			
 			// Here we create a new order node into the dom
 			// @TODO Create Element for single "order"
@@ -391,7 +455,7 @@ public class Order {
                         
 			// Now we save it... this is some JAVA boilerplate
                         // ... could be more intuitive, though ;)
-			DOMSource domSource = new DOMSource(document);
+			DOMSource domSource = new DOMSource(doc);
 			TransformerFactory tFactory = TransformerFactory.newInstance();
 			Transformer transformer = tFactory.newTransformer();
 			// Write into following path (Attention: This will be in your actual BUILD directory)
